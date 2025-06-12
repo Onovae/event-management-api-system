@@ -1,54 +1,55 @@
 # 📘 Event Management API System
 
-A FastAPI-based RESTful API that allows users to register for events, track attendance, and manage both event and speaker information. This project is designed to demonstrate CRUD operations, relationships, and basic business rules using an in-memory storage system.
+A FastAPI-based REST API to manage users, events, speakers, and registrations. The system uses in-memory storage with UUID-based identifiers, and supports full CRUD operations, attendance tracking, and validation rules.
 
 ---
 
 ## 🚀 Features
 
-- ✅ Create, read, update, delete users and events
+- ✅ Create, read, update, delete (CRUD) users, events, and registrations
+- ✅ Automatically initialize with 3 speakers
+- ✅ Register users for events (only once, only if active, and only for open events)
+- ✅ Track event attendance
+- ✅ Deactivate users
 - ✅ Close event registration
-- ✅ Register users for events (only if active and not already registered)
-- ✅ Track attendance
-- ✅ View user registrations and all registrations
-- ✅ View list of speakers (pre-initialized)
-- ✅ Optional: Filter users who have attended at least one event
+- ✅ Retrieve users who attended at least one event
+- 🔒 No authentication required
+- ⚙️ Data is stored in in-memory dictionaries/lists (no database required)
 
 ---
 
-## 🛠️ Tech Stack
+## 📦 Tech Stack
 
-- **Python 3.10+**
 - **FastAPI**
-- **Pydantic**
+- **Pydantic v2**
+- **Uvicorn** (for development server)
 
 ---
 
-## 🧩 Project Structure
+## 🗂️ Project Structure
 
-event_management/
-│
+
+
+.
 ├── main.py
-├── schemas/ # Pydantic models
+├── db.py
+├── schemas/
 │ ├── user.py
 │ ├── event.py
 │ ├── speaker.py
 │ └── registration.py
-│
-├── services/ # Business logic
+├── services/
 │ ├── user_service.py
 │ ├── event_service.py
 │ ├── speaker_service.py
 │ └── registration_service.py
-│
-├── routes/ # API endpoints
+├── routes/
 │ ├── user.py
 │ ├── event.py
 │ ├── speaker.py
 │ └── registration.py
-│
+├── requirements.txt
 └── README.md
-
 
 ---
 
@@ -58,8 +59,18 @@ event_management/
 - FastAPI
 - Uvicorn
 
-You can install dependencies using:
 
+---
+
+## ▶️ Getting Started
+
+### 🔧 Install Dependencies
+
+```bash
+python -m venv venv
+source venv/bin/activate  # or `venv\Scripts\activate` on Windows
+
+pip install -r requirements.txt
 
 pip install fastapi uvicorn
 
@@ -70,7 +81,7 @@ Clone the repository
 
 git clone https://github.com/onovae/event-management-api.git
 
-1. cd event-management-api
+1. cd event-management-api-system
 
 2. Start the server
 uvicorn main:app --reload
@@ -83,48 +94,46 @@ ReDoc: http://localhost:8000/redoc
 
 
 📬 API Endpoints Overview
+
 👤 Users
-GET /users/
+| Method   | Endpoint                      | Description             |
+| -------- | ----------------------------- | ----------------------- |
+| `GET`    | `/users/`                     | Get all users           |
+| `POST`   | `/users/`                     | Create a user           |
+| `GET`    | `/users/{user_id}`            | Get a specific user     |
+| `PUT`    | `/users/{user_id}`            | Update a user           |
+| `DELETE` | `/users/{user_id}`            | Delete a user           |
+| `PATCH`  | `/users/{user_id}/deactivate` | Deactivate a user       |
+| `GET`    | `/users/attended`             | List users who attended |
 
-GET /users/{id}
-
-POST /users/
-
-PUT /users/{id}
-
-DELETE /users/{id}
-
-PATCH /users/{id}/deactivate
-
-GET /users/attended (optional)
 
 🗓️ Events
-GET /events/
+| Method   | Endpoint                   | Description              |
+| -------- | -------------------------- | ------------------------ |
+| `GET`    | `/events/`                 | Get all events           |
+| `POST`   | `/events/`                 | Create an event          |
+| `GET`    | `/events/{event_id}`       | Get a specific event     |
+| `PUT`    | `/events/{event_id}`       | Update an event          |
+| `DELETE` | `/events/{event_id}`       | Delete an event          |
+| `PATCH`  | `/events/{event_id}/close` | Close event registration |
 
-GET /events/{id}
 
-POST /events/
+🎤 Speakers
+| Method | Endpoint                 | Description            |
+| ------ | ------------------------ | ---------------------- |
+| `GET`  | `/speakers/`             | Get all speakers       |
+| `GET`  | `/speakers/{speaker_id}` | Get a specific speaker |
 
-PUT /events/{id}
-
-DELETE /events/{id}
-
-PATCH /events/{id}/close
-
-🎙️ Speakers
-GET /speakers/
 
 📝 Registrations
-GET /registrations/
+| Method  | Endpoint                                  | Description                  |
+| ------- | ----------------------------------------- | ---------------------------- |
+| `GET`   | `/registrations/`                         | List all registrations       |
+| `POST`  | `/registrations/`                         | Register a user for an event |
+| `PATCH` | `/registrations/{registration_id}/attend` | Mark attendance              |
+| `GET`   | `/registrations/user/{user_id}`           | Get registrations for a user |
 
-GET /registrations/user/{user_id}
 
-POST /registrations/
-
-PATCH /registrations/{registration_id}/attend
-
-🧪 Optional Feature Implemented
-GET /users/attended: Lists all users who have attended at least one event.
 
 📎 Notes
 This project uses in-memory storage, which resets on app restart.
@@ -133,10 +142,20 @@ No authentication is required.
 
 On startup, 3 speakers are preloaded into the system.
 
+UUIDs are used as unique identifiers across all resources.
+
+All endpoints return appropriate status codes.
+
+Error handling is implemented for not found, inactive users, and duplicate registrations.
+
 🧑‍💻 Author
 Built by Maureen Onovae as part of ALTSCHOOL Examination project,
 
 📄 License
 This project is open-source and free to use under the MIT License.
+
+
+
+These versions reflect Pydantic v2 compatibility and email-validator required for EmailStr.
 
 
