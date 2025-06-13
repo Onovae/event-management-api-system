@@ -1,6 +1,6 @@
 from typing import List, Optional
 from uuid import UUID, uuid4
-from datetime import datetime
+from datetime import datetime, timezone
 from schemas.registration import Registration, RegistrationCreate
 from schemas.user import User
 from db import get_db
@@ -40,7 +40,7 @@ def register_user(reg_data: RegistrationCreate) -> Optional[Registration]:
         id=uuid4(),
         user_id=reg_data.user_id,
         event_id=reg_data.event_id,
-        registration_date=datetime.utcnow(),
+        registration_date=datetime.now(timezone.utc),
         attended=False
     )
 

@@ -7,6 +7,4 @@ class Speaker(BaseModel):
     name: str
     topic: str
 
-class SpeakerCreate(BaseModel):
-    name: str
-    topic: str
+

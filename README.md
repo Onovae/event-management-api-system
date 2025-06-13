@@ -28,8 +28,6 @@ A FastAPI-based REST API to manage users, events, speakers, and registrations. T
 
 ## 🗂️ Project Structure
 
-
-
 .
 ├── main.py
 ├── db.py
@@ -59,7 +57,6 @@ A FastAPI-based REST API to manage users, events, speakers, and registrations. T
 - FastAPI
 - Uvicorn
 
-
 ---
 
 ## ▶️ Getting Started
@@ -68,6 +65,7 @@ A FastAPI-based REST API to manage users, events, speakers, and registrations. T
 
 ```bash
 python -m venv venv
+
 source venv/bin/activate  # or `venv\Scripts\activate` on Windows
 
 pip install -r requirements.txt
@@ -76,17 +74,18 @@ pip install fastapi uvicorn
 
 
 ▶️ How to Run the App
+
 Clone the repository
 
-
+```bash
 git clone https://github.com/onovae/event-management-api.git
 
-1. cd event-management-api-system
+cd event-management-api-system
 
-2. Start the server
+# Start the server
 uvicorn main:app --reload
 
-3. Access the API Docs
+# Access the API Docs
 
 Swagger UI: http://localhost:8000/docs
 
@@ -159,3 +158,4 @@ This project is open-source and free to use under the MIT License.
 These versions reflect Pydantic v2 compatibility and email-validator required for EmailStr.
 
 
+```
