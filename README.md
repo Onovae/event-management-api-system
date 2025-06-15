@@ -107,14 +107,15 @@ ReDoc: http://localhost:8000/redoc
 
 
 🗓️ Events
-| Method   | Endpoint                   | Description              |
-| -------- | -------------------------- | ------------------------ |
-| `GET`    | `/events/`                 | Get all events           |
-| `POST`   | `/events/`                 | Create an event          |
-| `GET`    | `/events/{event_id}`       | Get a specific event     |
-| `PUT`    | `/events/{event_id}`       | Update an event          |
-| `DELETE` | `/events/{event_id}`       | Delete an event          |
-| `PATCH`  | `/events/{event_id}/close` | Close event registration |
+| Method   | Endpoint                          | Description              |
+| -------- | --------------------------------- | ------------------------ |
+| `GET`    | `/events/`                        | Get Events               |
+| `POST`   | `/events/`                        | Create Event             |
+| `GET`    | `/events/{event_id}`              | Get Event                |
+| `PUT`    | `/events/{event_id}`              | Update Event             |
+| `DELETE` | `/events/{event_id}`              | Delete Event             |
+| `PATCH`  | `/events/{event_id}/close`        | Close Event              |
+| `GET`    | `/events/by-speaker/{speaker_id}` | Get Events by Speaker |
 
 
 🎤 Speakers
@@ -132,14 +133,18 @@ ReDoc: http://localhost:8000/redoc
 | `PATCH` | `/registrations/{registration_id}/attend` | Mark attendance              |
 | `GET`   | `/registrations/user/{user_id}`           | Get registrations for a user |
 
-
+```
 
 📎 Notes
 This project uses in-memory storage, which resets on app restart.
 
 No authentication is required.
 
+## 🎤 Predefined Speakers
+
 On startup, 3 speakers are preloaded into the system.
+
+The application starts with 3 speakers. Use `GET /speakers/` to view them. Example:
 
 UUIDs are used as unique identifiers across all resources.
 
@@ -148,7 +153,7 @@ All endpoints return appropriate status codes.
 Error handling is implemented for not found, inactive users, and duplicate registrations.
 
 🧑‍💻 Author
-Built by Maureen Onovae as part of ALTSCHOOL Examination project,
+Built by Maureen Onovae as part of ALTSCHOOL Second Semester Examination project,
 
 📄 License
 This project is open-source and free to use under the MIT License.
@@ -158,4 +163,4 @@ This project is open-source and free to use under the MIT License.
 These versions reflect Pydantic v2 compatibility and email-validator required for EmailStr.
 
 
-```
+
