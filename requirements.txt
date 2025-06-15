@@ -4,7 +4,6 @@ email_validator==2.2.0
 fastapi==0.110.0
 idna==3.10
 pydantic==2.7.1
-pydantic_core==2.33.2
 typing-inspection==0.4.1
 typing_extensions==4.14.0
 uvicorn[standard]==0.29.0
