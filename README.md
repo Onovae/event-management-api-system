@@ -141,7 +141,7 @@ This project uses in-memory storage, which resets on app restart.
 
 No authentication is required.
 
-## 🎤 Predefined Speakers
+### 🎤 Predefined Speakers
 
 On startup, 3 speakers are preloaded into the system.
 
