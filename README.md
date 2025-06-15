@@ -136,6 +136,7 @@ ReDoc: http://localhost:8000/redoc
 ```
 
 📎 Notes
+
 This project uses in-memory storage, which resets on app restart.
 
 No authentication is required.
