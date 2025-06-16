@@ -3,5 +3,4 @@ uvicorn[standard]==0.22.0
 pydantic==1.10.15
 email_validator==2.2.0
 dnspython==2.7.0
-typing-inspection==0.4.1
-typing_extensions==4.7.1
+typing_extensions>=4.2.0
