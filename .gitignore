@@ -1,12 +1,23 @@
 # Python
 __pycache__/
 *.py[cod]
-*.egg-info/
+*$py.class
 
-# Virtual environment
+# Virtual Environment
 venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+*.code-workspace
+
+# Environment variables
 .env
 
-# OS
-.DS_Store
-Thumbs.db
+# Database
+*.db
+*.sqlite3
+
+# Logs
+*.log
